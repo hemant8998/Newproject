@@ -1,0 +1,48 @@
+<%= form_for @employee, :html => { :multipart => true } do |f| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+   <div class="field">
+    <%= f.label "Choose manager" %>
+    <%= f.collection_select :manager_id,@managers.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city_id %>
+    <%= f.collection_select :city_id, City.all, :id, :name %>
+ 
+  </div>
+     
+    <div class="field">
+        <%= f.label "Willing to relocate" %> 
+        <%= f.check_box :willing_to_relocate%> <br/>
+    </div>
+
+   <div class="field">
+   <% if @employee.photo.exists? %>
+      <%= image_tag @employee.photo.url %><br/>
+  <% end %>
+  <%= f.label :image, "Attach a New Image" %><br />
+      <%=f.file_field :photo%>
+    </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

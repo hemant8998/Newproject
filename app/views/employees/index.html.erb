@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+<ol>
+<table>
+  <thead style="text-align: center;">
+    <tr>
+      <th>S no.</th>
+      <th>Bro ki D.P</th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Manager</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody style="text-align: center;">
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><li></li></td>
+        <td><%=link_to (image_tag employee.photo.url(:small)), employee %></td>
+        <td><%= employee.name %></td>
+        <td><%= employee.city.name %></td>
+        <td><%= employee.manager.name %></td>
+        <td><%= link_to 'Show', employee %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</ol>
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>
+
+

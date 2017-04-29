@@ -1,0 +1,23 @@
+<h3>Relocation Requests: <%=Employee.all.where(willing_to_relocate:"1").count%></h3>
+<ol>
+<table>
+  <thead>
+    <tr>
+      <th>S no.</th>
+      <th>Employee Name</th>
+      <th>Employee City</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%Employee.all.where(willing_to_relocate:"1").each do |wtr|%>
+        <tr>
+        <td><li></li></td>
+        <td><%=link_to wtr.name,edit_employee_path(wtr)%></td>
+        <td><%= wtr.city.name %></td>
+       
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</ol>
